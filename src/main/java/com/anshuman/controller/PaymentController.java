@@ -69,7 +69,7 @@ public class PaymentController {
         JSONObject notify = new JSONObject();
         notify.put("email",true);
         paymentLinkRequest.put("notify",notify);
-        paymentLinkRequest.put("callback_url","http://localhost:5173/upgrade_plan/success?planType"+ planType);
+        paymentLinkRequest.put("callback_url","http://localhost:5173/upgrade_plan/success?planType="+ planType);
         return paymentLinkRequest;
     }
 }

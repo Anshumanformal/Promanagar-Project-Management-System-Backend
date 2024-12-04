@@ -91,11 +91,13 @@ public class ProjectServiceImpl implements ProjectService {
     public void addUserToProject(Long projectId, Long userId) throws Exception {
         Project project = getProjectById(projectId);
         User user = userService.findUserById(userId);
-//         Check if the user is not already present in the team
-        if(!project.getTeam().contains(user)){
-            project.getChat().getUsers().add(user);
-            project.getTeam().add(user);
+
+        for(User member : project.getTeam()){
+            if(member.getId().equals(userId))
+                return;
         }
+        project.getChat().getUsers().add(user);
+        project.getTeam().add(user);
         projectRepository.save(project);
     }
 

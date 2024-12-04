@@ -105,11 +105,9 @@ public class ProjectController {
     @PostMapping("/invite")
     public ResponseEntity<MessageResponse> inviteProject(
             @RequestBody InviteRequest inviteRequest,
-            @RequestBody Project project,
             @RequestHeader("Authorization") String jwt
     )throws Exception{
         User user = userService.findUserProfileByJwt(jwt);
-        Project createdProject = projectService.createProject(project,user);
         invitationService.sendInvitation(inviteRequest.getEmail(),inviteRequest.getProjectId());
         MessageResponse res = new MessageResponse("User invitation sent");
         return new ResponseEntity<>(res, HttpStatus.OK);
@@ -118,7 +116,6 @@ public class ProjectController {
     @GetMapping("/accept_invitation")
     public ResponseEntity<Invitation> acceptInviteProject(
             @RequestParam String token,
-            @RequestBody Project project,
             @RequestHeader("Authorization") String jwt
     )throws Exception{
         User user = userService.findUserProfileByJwt(jwt);
