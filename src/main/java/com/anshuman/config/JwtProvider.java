@@ -8,7 +8,6 @@ import org.springframework.security.core.Authentication;
 import javax.crypto.SecretKey;
 import java.util.Date;
 
-// T
 public class JwtProvider {
 
     static SecretKey key = Keys.hmacShaKeyFor(JwtConstant.SECRETE_KEY.getBytes());
